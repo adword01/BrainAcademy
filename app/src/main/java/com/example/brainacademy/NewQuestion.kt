@@ -82,7 +82,7 @@ class NewQuestion : AppCompatActivity() {
 
                             database=FirebaseDatabase.getInstance().getReference("Question Database")
                             val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                            database.child(question).setValue(Questions).addOnSuccessListener {
+                            database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -129,7 +129,7 @@ class NewQuestion : AppCompatActivity() {
 
                             database=FirebaseDatabase.getInstance().getReference("Question Database")
                             val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                            database.child(question).setValue(Questions).addOnSuccessListener {
+                            database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -177,7 +177,7 @@ class NewQuestion : AppCompatActivity() {
 
                             database=FirebaseDatabase.getInstance().getReference("Question Database")
                             val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                            database.child(question).setValue(Questions).addOnSuccessListener {
+                            database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -223,8 +223,8 @@ class NewQuestion : AppCompatActivity() {
 
 
                             database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                                database.child(question).setValue(Questions).addOnSuccessListener {
+                            var Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
+                                database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -271,7 +271,7 @@ class NewQuestion : AppCompatActivity() {
 
                             database=FirebaseDatabase.getInstance().getReference("Question Database")
                             val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                            database.child(question).setValue(Questions).addOnSuccessListener {
+                            database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
