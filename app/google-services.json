@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1078878118718",
+    "project_id": "brainacademy-9b1d2",
+    "storage_bucket": "brainacademy-9b1d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078878118718:android:a4d700c8979fe5f761026f",
+        "android_client_info": {
+          "package_name": "com.example.brainacademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078878118718-p8gtstcco3obj5sadqjrlb8k45obn01h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD01_G3gMu_XlYmQC8rAMxrkn9LyJbE-fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078878118718-p8gtstcco3obj5sadqjrlb8k45obn01h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
