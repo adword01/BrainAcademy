@@ -22,12 +22,14 @@ class NewQuestion : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        database=FirebaseDatabase.getInstance().getReference("Questions")
+
 
         outerSpinner = findViewById(R.id.outer_spinner)
         innerSpinner = findViewById(R.id.inner_spinner)
 
 
-        val outerSpinnerArray = arrayOf("Select Category","Science ", "Technology", "Engineering","Mathematics","Entrepreneurship")
+        val outerSpinnerArray = arrayOf("Select Category","Science", "Technology", "Engineering","Mathematics","Entrepreneurship")
         val innerSpinnerArray1 = arrayOf("Select Subcategory")
         val innerSpinnerArray2 = arrayOf("Physics", "Chemistry", "Biology","Earth Science","Physical Science")
         val innerSpinnerArray3 = arrayOf("System Administration", "Network Security", "Software Development")
@@ -80,9 +82,9 @@ class NewQuestion : AppCompatActivity() {
 
 
 
-                            database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                            database.child(category).setValue(Questions).addOnSuccessListener {
+                            val Questions = questiondatabse(question,option1,option2,option3,option4,subcategory,CorrectOption)
+                           // val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
+                            database.child(category).child(subcategory).child(question).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -127,8 +129,7 @@ class NewQuestion : AppCompatActivity() {
 
 
 
-                            database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
+                            val Questions = questiondatabse(question,option1,option2,option3,option4,subcategory,CorrectOption)
                             database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
@@ -175,8 +176,7 @@ class NewQuestion : AppCompatActivity() {
 
 
 
-                            database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
+                            val Questions = questiondatabse(question,option1,option2,option3,option4,subcategory,CorrectOption)
                             database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
@@ -222,9 +222,8 @@ class NewQuestion : AppCompatActivity() {
 
 
 
-                            database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            var Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
-                                database.child(category).setValue(Questions).addOnSuccessListener {
+                            val Questions = questiondatabse(question,option1,option2,option3,option4,subcategory,CorrectOption)
+                            database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()
 
@@ -269,8 +268,7 @@ class NewQuestion : AppCompatActivity() {
 
 
 
-                            database=FirebaseDatabase.getInstance().getReference("Question Database")
-                            val Questions=Questions(category,subcategory,question,option1, option2, option3, option4, CorrectOption)
+                            val Questions = questiondatabse(question,option1,option2,option3,option4,subcategory,CorrectOption)
                             database.child(category).setValue(Questions).addOnSuccessListener {
                                 binding.outerSpinner.clearFocus()
                                 binding.innerSpinner.clearFocus()

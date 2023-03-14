@@ -103,7 +103,7 @@ class QuizSettingsActivity : AppCompatActivity() {
                 val selectedCategory = categories[position]
 
                 // Do something with the selected category
-                Log.d(TAG, "Selected category: $selectedCategory")
+//                Log.d(TAG, "Selected category: $selectedCategory")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -117,6 +117,7 @@ class QuizSettingsActivity : AppCompatActivity() {
             val intent = Intent(this,QuizActivity::class.java)
             val selected_category = categorySpinner.selectedItem.toString()
 
+            Log.d(TAG, "Selected category: $selected_category")
             intent.putExtra("category", selected_category)
             intent.putExtra("length", quizLength)
             startActivity(intent)
