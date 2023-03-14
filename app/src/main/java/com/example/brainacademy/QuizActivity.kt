@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
+//import kotlinx.coroutines.NonCancellable.message
 
 class QuizActivity : AppCompatActivity() {
 
@@ -65,6 +66,7 @@ private fun displayQuestions() {
 
             // Select a random question that hasn't been asked yet
             val unansweredQuestions = questionList.filter { it.description !in askedQuestions }
+            var flag : Int = 0
             if (unansweredQuestions.isNotEmpty()) {
                 val randomQuestion = unansweredQuestions.random()
                 questionTextView.text = randomQuestion.description
@@ -106,21 +108,32 @@ private fun displayQuestions() {
                     // Clear the selected option variable
 //                    selectedOption = null
                     // Display the next question or show the final score
-                    if (askedQuestions.size <= questionList.size) {
+                    if (askedQuestions.size < questionList.size) {
                         displayQuestions()
-                    } else {
-                        showFinalScore()
-                        return@setOnClickListener
                     }
+                    if (askedQuestions.size >= questionList.size) {
+                        showFinalScore()
+                    }
+//                    else {
+//                        Toast.makeText(this@QuizActivity,"SCore",Toast.LENGTH_SHORT).show()
+////                        showFinalScore()
+//                    }
+
                 }
 
             } else {
-                Toast.makeText(this@QuizActivity,"Toast",Toast.LENGTH_SHORT).show()
+//                ++flag
+//             //   Toast.makeText(this@QuizActivity,"Toast",Toast.LENGTH_SHORT).show()
+//                if(flag == 1){
+
+//                    showFinalScore()
+//                }
                 // All questions have been asked, exit the activity
              //   val intent = Intent(this@QuizActivity,ResultActivity::class.java)
                 finish()
 
             }
+
         }
 
         override fun onCancelled(error: DatabaseError) {
@@ -142,9 +155,9 @@ private fun displayQuestions() {
     }
 
     fun showFinalScore() {
-        val message = "Your final score is $score "
-        Toast.makeText(this@QuizActivity, message, Toast.LENGTH_LONG).show()
-        return 
+//        val message = "Your final score is $score "
+        Toast.makeText(this@QuizActivity, "$score", Toast.LENGTH_LONG).show()
+
         // You can also start a new activity to show the final score in a different screen
     }
 
