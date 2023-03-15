@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-
-    <VideoView
-        android:id="@+id/login_video"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        app:lottie_rawRes="@raw/login"
+        android:layout_margin="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="40dp"
         android:foregroundGravity="center"
-        />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+<!--    <VideoView-->
+<!--        android:id="@+id/login_video"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_margin="40dp"-->
+<!--        android:foregroundGravity="center"-->
+<!--        />-->
 
     <LinearLayout
         android:layout_width="match_parent"

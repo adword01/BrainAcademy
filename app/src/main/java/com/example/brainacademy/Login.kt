@@ -27,14 +27,7 @@ class Login : AppCompatActivity() {
 //        setContentView(binding.root)
         setContentView(R.layout.activity_login)
 
-        videoView = findViewById(R.id.login_video)
-        val videoPath = "android.resource://" + packageName + "/" + R.raw.login_vid
-        videoView.setVideoURI(Uri.parse(videoPath))
-        videoView.start()
 
-        videoView.setOnPreparedListener {
-            it.isLooping = true
-        }
 
 
 //        val email_login = findViewById<EditText>(R.id.login_username)

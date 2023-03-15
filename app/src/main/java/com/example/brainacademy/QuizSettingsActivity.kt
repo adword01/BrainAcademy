@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Spinner
 import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.DataBindingUtil.setContentView
 import com.example.brainacademy.model.startQuiz
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

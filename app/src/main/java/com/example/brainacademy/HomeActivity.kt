@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.Fragment
 import com.example.brainacademy.databinding.ActivityHomeBinding
 import com.example.brainacademy.databinding.ActivityLoginBinding

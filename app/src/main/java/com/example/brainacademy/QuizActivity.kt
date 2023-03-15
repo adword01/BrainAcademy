@@ -13,7 +13,7 @@ import com.google.firebase.database.*
 class QuizActivity : AppCompatActivity() {
 
 
-    private val askedQuestions = mutableListOf<String>()
+    private var askedQuestions = mutableListOf<String>()
     var flag: Boolean = true
 
     private lateinit var database: DatabaseReference
@@ -33,7 +33,7 @@ class QuizActivity : AppCompatActivity() {
         selected_category = intent.getStringExtra("category").toString().trim()
         var length = intent.getIntExtra("length",0)
 
-//
+
         category.setText(selected_category)
 
         displayQuestions()
@@ -117,16 +117,16 @@ class QuizActivity : AppCompatActivity() {
 
 // Add an onClickListener to the nextButton
                     val nextButton = findViewById<Button>(R.id.nextButton)
-                    val index = 0
+//                    val index = 0
                     nextButton.setOnClickListener {
                         // Check the selected answer and update the score
                         checkAnswer(selectedOption.toString(), randomQuestion.correctanswer)
-                        var length = intent.getIntExtra("length",0)
+                        val length = intent.getIntExtra("length",0)
 
                         // Clear the selected option variable
 //                    selectedOption = null
                         // Display the next question or show the final score
-                        if (askedQuestions.size <= length-1) {
+                        if (askedQuestions.size <= (length-1)) {
 //                            askedQuestions.size++
 //                            Toast.makeText(
 //                                this@QuizActivity,
