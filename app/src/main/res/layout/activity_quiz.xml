@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.123">
 
+
         <TextView
             android:id="@+id/category"
             android:layout_width="wrap_content"
@@ -51,6 +52,11 @@
             android:text="Questions"
             android:textColor="#a1d2ff"
             android:textSize="16sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Quizrecylerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
 
         <TextView
             android:id="@+id/option1"
@@ -126,6 +132,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="172dp"
         android:text="Submit"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
