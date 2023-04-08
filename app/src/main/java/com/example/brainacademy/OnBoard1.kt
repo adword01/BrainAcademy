@@ -3,6 +3,8 @@ package com.example.brainacademy
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,11 +34,24 @@ class OnBoard1 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
 
         if(restorePrefData()){
-            val i=Intent(applicationContext,Login::class.java)
-            startActivity(i)
-            finish()
+            if (networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+                // Network is connected, start the new activity
+                val i=Intent(applicationContext,Login::class.java)
+                startActivity(i)
+                finish()
+            } else {
+                val i=Intent(applicationContext,NetworkActivity::class.java)
+                startActivity(i)
+                finish()
+                // Network is not connected, show a message or perform some other action
+                Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE)

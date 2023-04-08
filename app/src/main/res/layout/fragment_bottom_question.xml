@@ -10,80 +10,80 @@
         android:layout_height="match_parent"
         android:id="@+id/btm_sheet_lyt"
         android:orientation="vertical">
-<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
+        <!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
 
-
-    <TextView
-        android:textColor="#020304"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:layout_margin="20dp"
-        android:text="Questions"/>
-
-    <TextView
-        android:id="@+id/add_ques"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/default_option_background"
-        android:layout_marginEnd="20dp"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textColor="#020304"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginStart="20dp"
-        android:text="Add Questions"/>
 
         <TextView
             android:textColor="#020304"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_margin="20dp"
+            android:text="Questions"/>
 
-            android:id="@+id/show_ques"
+        <TextView
+            android:id="@+id/add_ques"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/default_option_background"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:textSize="20sp"
+            android:textColor="#020304"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginStart="20dp"
-            android:text="Show Questions"/>
+            android:text="Add Questions"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/show_ques_lyt"
-            android:visibility="gone"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+        <!--        <TextView-->
+        <!--            android:textColor="#020304"-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Select Category"/>
+        <!--            android:id="@+id/show_ques"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:background="@drawable/default_option_background"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:gravity="center"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:text="Show Questions"/>-->
 
-        <Spinner
-            android:id="@+id/ques_category"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            />
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="20dp"-->
+        <!--            android:id="@+id/show_ques_lyt"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:orientation="vertical">-->
 
-        <Button
-            android:id="@+id/ques_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:text="Select Category"/>-->
 
-        </LinearLayout>
+        <!--        <Spinner-->
+        <!--            android:id="@+id/ques_category"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/ques_submit"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Submit"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_gravity="center"/>-->
+
+        <!--        </LinearLayout>-->
 
         <Button
             android:id="@+id/cancel"

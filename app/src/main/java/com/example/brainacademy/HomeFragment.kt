@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
     private lateinit var videoView3: VideoView
     private lateinit var videoView4: VideoView
     private lateinit var bottomSheet: LinearLayout
-    private lateinit var bottomSheetButton: CardView
+    private lateinit var bottomSheetQuestion: CardView
+    private lateinit var bottomSheetScore: CardView
 
 
 
@@ -55,20 +56,64 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-//        LottieAnimationView = view.findViewById(R.id.cat1_vid)
-//        videoView1 = view.findViewById(R.id.cat2_vid)
-//        videoView2 = view.findViewById(R.id.cat3_vid)
-//        videoView3 = view.findViewById(R.id.cat4_vid)
-//        videoView4 = view.findViewById(R.id.cat5_vid)
 
-        bottomSheetButton = view.findViewById(R.id.create)
-        bottomSheetButton.setOnClickListener {
+
+        bottomSheetQuestion = view.findViewById(R.id.create)
+        bottomSheetQuestion.setOnClickListener {
             openBottomSheet()
+        }
+
+        bottomSheetScore = view.findViewById(R.id.join)
+        bottomSheetScore.setOnClickListener {
+            openScoreSheet()
         }
 
 
         return view
     }
+
+    private fun openScoreSheet() {
+        val view = layoutInflater.inflate(R.layout.fragment_bottom_score, null)
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.setContentView(view)
+        dialog.show()
+
+        val show_score=view.findViewById<TextView>(R.id.show_score)
+        show_score.setOnClickListener {
+            val intent = Intent (getActivity(), ScoreActivity::class.java)
+            getActivity()?.startActivity(intent)
+            dialog.dismiss()
+
+        }
+
+        val add_score=view.findViewById<TextView>(R.id.add_score)
+        add_score.setOnClickListener {
+            val show_lyt = view.findViewById<LinearLayout>(R.id.show_ques_lyt)
+            show_lyt.isVisible = true
+        }
+
+        val ques_category_array = arrayOf("Select Category","Science", "Technology", "Engineering","Mathematics","Entrepreneurship")
+        val ques_category = view.findViewById<Spinner>(R.id.ques_category)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ques_category_array)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        ques_category.adapter = adapter
+
+
+        val submit=view.findViewById<Button>(R.id.start_hscore)
+        submit.setOnClickListener {
+            val category = ques_category.selectedItem.toString()
+            val intent = Intent (getActivity(), QuizActivity::class.java)
+            intent.putExtra("category",category)
+            getActivity()?.startActivity(intent)
+            dialog.dismiss()
+        }
+
+        val cancel=view.findViewById<Button>(R.id.cancel_score)
+        cancel.setOnClickListener {
+            dialog.dismiss()}
+
+    }
+
     private fun openBottomSheet() {
         val view = layoutInflater.inflate(R.layout.fragment_bottom_question, null)
         val dialog = BottomSheetDialog(requireContext())
@@ -79,54 +124,13 @@ class HomeFragment : Fragment() {
         add_ques.setOnClickListener {
             val intent = Intent (getActivity(), NewQuestion::class.java)
             getActivity()?.startActivity(intent)
-        }
-
-        val show_ques=view.findViewById<TextView>(R.id.show_ques)
-        show_ques.setOnClickListener {
-            val show_lyt=view.findViewById<LinearLayout>(R.id.show_ques_lyt)
-            show_lyt.isVisible = true
-
-
-//            val intent = Intent (getActivity(), NewQuestion::class.java)
-//            getActivity()?.startActivity(intent)
-        }
-
-        val ques_category_array = arrayOf("Select Category","Science", "Technology", "Engineering","Mathematics","Entrepreneurship")
-        val ques_category = view.findViewById<Spinner>(R.id.ques_category)
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ques_category_array)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        ques_category.adapter = adapter
-
-        val submit=view.findViewById<Button>(R.id.ques_submit)
-        submit.setOnClickListener {
-            val category = ques_category.selectedItem.toString()
-            val intent = Intent (getActivity(), MainActivity::class.java)
-            intent.putExtra("category",category)
-            getActivity()?.startActivity(intent)
             dialog.dismiss()
-//            val intent = Intent (getActivity(), NewQuestion::class.java)
-//            getActivity()?.startActivity(intent)
         }
-//
-//        val category = ques_category.selectedItem.toString()
-//
-//        val submit = view.findViewById<Button>(R.id.submit)
-//        submit.setOnClickListener {
-//
-//        val intent = Intent (getActivity(), MainActivity::class.java)
-//        intent.putExtra("category",category)
-//
-//        getActivity()?.startActivity(intent)
-//        }
-//        val intent = Intent (getActivity(), NewQuestion::class.java)
-//        intent.putExtra("category",category)
-//        getActivity()?.startActivity(intent)
 
         val cancel=view.findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener {
             dialog.dismiss()
-//            val intent = Intent (getActivity(), NewQuestion::class.java)
-//            getActivity()?.startActivity(intent)
+
         }
 
     }
@@ -160,7 +164,6 @@ class HomeFragment : Fragment() {
                 val intent = Intent (getActivity(), QuizActivity::class.java)
                 intent.putExtra("category",category)
                 getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
             }
         })
 
@@ -171,7 +174,6 @@ class HomeFragment : Fragment() {
                 val intent = Intent (getActivity(), QuizActivity::class.java)
                 intent.putExtra("category",category)
                 getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
             }
         })
         val myCard3 = view.findViewById(R.id.engineering) as CardView
@@ -181,7 +183,6 @@ class HomeFragment : Fragment() {
                 val intent = Intent (getActivity(), QuizActivity::class.java)
                 intent.putExtra("category",category)
                 getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
             }
         })
         val myCard4 = view.findViewById(R.id.mathematics) as CardView
@@ -191,7 +192,6 @@ class HomeFragment : Fragment() {
                 val intent = Intent (getActivity(), QuizActivity::class.java)
                 intent.putExtra("category",category)
                 getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
             }
         })
         val myCard5 = view.findViewById(R.id.entrepreneur) as CardView
@@ -201,71 +201,9 @@ class HomeFragment : Fragment() {
                 val intent = Intent (getActivity(), QuizActivity::class.java)
                 intent.putExtra("category",category)
                 getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
             }
         })
 
 
-//        val ques = view.findViewById(R.id.create) as CardView
-//        myCard1.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(v: View?) {
-////                val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet)
-////                bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-//
-//                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//
-
-//                val category = "Science"
-//                val intent = Intent (getActivity(), QuizActivity::class.java)
-//                intent.putExtra("category",category)
-//                getActivity()?.startActivity(intent)
-//                inflater.inflate(R.layout.fragment_gallery, container, false)
-//            }
-//        })
-
-
-
-
-//        var videoUri = Uri.parse("android.resource://" + requireContext().packageName + "/" + R.raw.sci)
-//        videoView.setVideoURI(videoUri)
-//        videoView.start()
-//
-//        videoView.setOnCompletionListener {
-//            // Video finished playing, restart it
-//            videoView.start()
-//        }
-//
-//        videoUri = Uri.parse("android.resource://" + requireContext().packageName + "/" + R.raw.tech)
-//        videoView1.setVideoURI(videoUri)
-//        videoView1.start()
-//
-//        videoView1.setOnCompletionListener {
-//            // Video finished playing, restart it
-//            videoView1.start()
-//        }
-//        videoUri = Uri.parse("android.resource://" + requireContext().packageName + "/" + R.raw.eng)
-//        videoView2.setVideoURI(videoUri)
-//        videoView2.start()
-//
-//        videoView2.setOnCompletionListener {
-//            // Video finished playing, restart it
-//            videoView2.start()
-//        }
-//        videoUri = Uri.parse("android.resource://" + requireContext().packageName + "/" + R.raw.math)
-//        videoView3.setVideoURI(videoUri)
-//        videoView3.start()
-//
-//        videoView3.setOnCompletionListener {
-//            // Video finished playing, restart it
-//            videoView3.start()
-//        }
-//        videoUri = Uri.parse("android.resource://" + requireContext().packageName + "/" + R.raw.ent)
-//        videoView4.setVideoURI(videoUri)
-//        videoView4.start()
-//
-//        videoView4.setOnCompletionListener {
-//            // Video finished playing, restart it
-//            videoView4.start()
-//        }
     }
 }

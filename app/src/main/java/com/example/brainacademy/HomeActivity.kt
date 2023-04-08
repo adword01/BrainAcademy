@@ -28,36 +28,36 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-            bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
-            bottomNav.setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.home -> {
-                        loadFragment(HomeFragment())
-                        true
-                    }
-                    R.id.Search -> {
-                        loadFragment(SearchFragment())
-                        true
-                    }
-                    R.id.leaderboard -> {
-                        loadFragment(LeaderboardFragment())
-                        true
-                    }
-                    R.id.profile -> {
-                        loadFragment(ProfileFragment())
-                        true
-                    }
-                    R.id.NewQues -> {
-                        val intent= Intent(this,NewQuestion::class.java)
-                        startActivity(intent)
-                        true
-                    }
-                    else -> {
-                        loadFragment(HomeFragment())
-                        true
-                    }
-                }
-            }
+//            bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
+//            bottomNav.setOnItemSelectedListener {
+//                when (it.itemId) {
+//                    R.id.home -> {
+//                        loadFragment(HomeFragment())
+//                        true
+//                    }
+////                    R.id.Search -> {
+////                        loadFragment(SearchFragment())
+////                        true
+////                    }
+//                    R.id.leaderboard -> {
+//                        loadFragment(LeaderboardFragment())
+//                        true
+//                    }
+//                    R.id.profile -> {
+//                        loadFragment(ProfileFragment())
+//                        true
+//                    }
+//                    R.id.NewQues -> {
+//                        val intent= Intent(this,NewQuestion::class.java)
+//                        startActivity(intent)
+//                        true
+//                    }
+//                    else -> {
+//                        loadFragment(HomeFragment())
+//                        true
+//                    }
+//                }
+//            }
 
 //                val username = it.child("username").value
 //
