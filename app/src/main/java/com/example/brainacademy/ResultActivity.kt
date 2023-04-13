@@ -1,15 +1,12 @@
 package com.example.brainacademy
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 
 class ResultActivity : AppCompatActivity() {
@@ -25,13 +22,11 @@ class ResultActivity : AppCompatActivity() {
         val score = intent.getIntExtra("score", 0)
         val totalScore = score.toString()
 
-        // Get the username from the shared preferences
         val sharedPreferences = getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
         username = sharedPreferences.getString("username", "")!!
 
         database = FirebaseDatabase.getInstance().getReference("Users")
 
-        // Update the high score in the database if the current score is higher
         database.child(username).child("highscore").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val highScore = snapshot.getValue(Int::class.java) ?: 0
@@ -46,15 +41,24 @@ class ResultActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
+        database.child(username).child("lastscore").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                database.child(username).child("lastscore").setValue(totalScore)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+        })
 
         val scoreTxt = findViewById<TextView>(R.id.score_txt)
         scoreTxt.text = "$totalScore out of 10"
 
         val finishQuizBtn = findViewById<Button>(R.id.finish_quiz)
         finishQuizBtn.setOnClickListener {
-            val intent = Intent(this@ResultActivity, HomeActivity::class.java)
-            intent.putExtra("prev_score", score)
-            startActivity(intent)
+            val intent1 = Intent(this@ResultActivity, HomeActivity::class.java)
+            startActivity(intent1)
         }
     }
 

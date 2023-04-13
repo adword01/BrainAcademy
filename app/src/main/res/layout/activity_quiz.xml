@@ -4,19 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ECF9FF"
     tools:context=".QuizActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <TextView
@@ -24,10 +19,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/amita_bold"
             android:text="Category"
-            android:textColor="#21aeff"
-            android:textSize="26sp"
+            android:textColor="#03001C"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
 
@@ -36,10 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/caveat_bold"
             android:text="SubCategory"
             android:textColor="#21aeff"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -48,14 +45,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:background="@drawable/default_option_background"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="Questions"
-            android:textColor="#a1d2ff"
-            android:textSize="16sp" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Quizrecylerview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:textColor="#03001C"
+            android:textSize="24sp" />
 
 
         <TextView
@@ -65,92 +60,117 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/default_option_background"
+            android:fontFamily="monospace"
             android:gravity="center"
             android:text="Option 1"
-            android:textColor="#d211f2"
+            android:textColor="#03C988"
             android:textSize="24dp" />
+
 
         <TextView
             android:id="@+id/option2"
-
             android:layout_width="match_parent"
+
             android:layout_height="60dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/default_option_background"
+            android:fontFamily="monospace"
             android:gravity="center"
+            android:textColor="#03C988"
+
             android:text="Option 2"
             android:textSize="24dp" />
 
+
         <TextView
             android:id="@+id/option3"
-
             android:layout_width="match_parent"
+
             android:layout_height="60dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/default_option_background"
+            android:fontFamily="monospace"
             android:gravity="center"
+            android:textColor="#03C988"
+
             android:text="Option 3"
             android:textSize="24dp" />
 
         <TextView
             android:id="@+id/option4"
-
             android:layout_width="match_parent"
+
             android:layout_height="60dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/default_option_background"
+            android:fontFamily="monospace"
             android:gravity="center"
             android:text="Option 4"
+            android:textColor="#03C988"
+
             android:textSize="24dp" />
 
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Next" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="172dp"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--    <Button-->
+    <!--        android:id="@+id/nextButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:text="Next" />-->
 
-    <Button
-        android:id="@+id/submitBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="172dp"
-        android:text="Submit"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/previousBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="172dp"
-        android:text="Previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <Button-->
+<!--        android:id="@+id/submitBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_marginBottom="172dp"-->
+<!--        android:text="Submit"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.506"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/previousBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginBottom="172dp"-->
+<!--        android:text="Previous"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.038"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,15 @@
 package com.example.brainacademy
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class ScoreActivity : AppCompatActivity() {
@@ -21,6 +24,14 @@ class ScoreActivity : AppCompatActivity() {
         // Get the username from SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("username", "")
+        val score_user = findViewById<TextView>(R.id.score_user)
+        score_user.text="Congrats!! " +"$username"
+
+        val home_btn=findViewById<Button>(R.id.score_to_home)
+        home_btn.setOnClickListener {
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         // Retrieve the high score from Firebase Realtime Database
         database = FirebaseDatabase.getInstance().getReference("Users")
@@ -28,9 +39,12 @@ class ScoreActivity : AppCompatActivity() {
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    val highscore = dataSnapshot.child("highscore").getValue(Long::class.java)
+                    val highscore = dataSnapshot.child("highscore").getValue()
+                    val previous= dataSnapshot.child("lastscore").getValue()
                     val hs = findViewById<TextView>(R.id.high_score)
                     hs.text = highscore.toString()
+                    val prev = findViewById<TextView>(R.id.previous_score)
+                    prev.text = previous.toString()
                 } else {
                     Log.e("firebase", "High score not found for user $username")
                 }
@@ -42,10 +56,9 @@ class ScoreActivity : AppCompatActivity() {
         })
 
         // Set the previous score in the activity
-        val intent = intent
-        val prevscore = intent.getIntExtra("prev_score", 0)
-        val prev = findViewById<TextView>(R.id.previous_score)
-        prev.text = prevscore.toString()
+//        val intent = intent
+//        val prevscore = intent.getIntExtra("prev_score", 0)
+
     }
 
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/OptionContainer"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/QuizQuestion"
+        android:text="Question"
+        android:textSize="20sp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/QuizOption"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:text="Option1"
+        android:textColor="#3a2da1"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

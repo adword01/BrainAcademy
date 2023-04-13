@@ -42,21 +42,21 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val searchView = view.findViewById<SearchView>(R.id.searchView)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                // Handle search query submission
+//        val searchView = view.findViewById<SearchView>(R.id.searchView)
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                // Handle search query submission
+//
+//                return true
+//            }
 
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // Handle search query text change
-
-
-                return true
-            }
-        })
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                // Handle search query text change
+//
+//
+//                return true
+//            }
+//        })
 
         quesRecyclerView = view.findViewById(R.id.recycler_view)
         quesRecyclerView.layoutManager = LinearLayoutManager(context)

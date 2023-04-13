@@ -7,12 +7,15 @@
     android:background="@color/white"
     tools:context=".QuizVidActivity">
 
-    <VideoView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/quiz_vid"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_margin="30dp"
         android:foregroundGravity="center"
+        app:lottie_rawRes="@raw/quiz"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +30,7 @@
         android:shadowRadius="10"
         android:text="Generating Quiz"
         android:textColor="#554994"
-        android:textSize="32sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

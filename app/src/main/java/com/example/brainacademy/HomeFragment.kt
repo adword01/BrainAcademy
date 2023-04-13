@@ -1,77 +1,38 @@
 package com.example.brainacademy
 
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
-import com.airbnb.lottie.LottieAnimationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.Dispatchers.Main
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
-    private lateinit var videoView: VideoView
-    private lateinit var videoView1: VideoView
-    private lateinit var videoView2: VideoView
-    private lateinit var videoView3: VideoView
-    private lateinit var videoView4: VideoView
-    private lateinit var bottomSheet: LinearLayout
     private lateinit var bottomSheetQuestion: CardView
     private lateinit var bottomSheetScore: CardView
-
-
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-
         bottomSheetQuestion = view.findViewById(R.id.create)
         bottomSheetQuestion.setOnClickListener {
             openBottomSheet()
         }
-
         bottomSheetScore = view.findViewById(R.id.join)
         bottomSheetScore.setOnClickListener {
             openScoreSheet()
         }
-
-
         return view
     }
-
     private fun openScoreSheet() {
         val view = layoutInflater.inflate(R.layout.fragment_bottom_score, null)
         val dialog = BottomSheetDialog(requireContext())
@@ -91,14 +52,11 @@ class HomeFragment : Fragment() {
             val show_lyt = view.findViewById<LinearLayout>(R.id.show_ques_lyt)
             show_lyt.isVisible = true
         }
-
         val ques_category_array = arrayOf("Select Category","Science", "Technology", "Engineering","Mathematics","Entrepreneurship")
         val ques_category = view.findViewById<Spinner>(R.id.ques_category)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ques_category_array)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         ques_category.adapter = adapter
-
-
         val submit=view.findViewById<Button>(R.id.start_hscore)
         submit.setOnClickListener {
             val category = ques_category.selectedItem.toString()
@@ -107,11 +65,9 @@ class HomeFragment : Fragment() {
             getActivity()?.startActivity(intent)
             dialog.dismiss()
         }
-
         val cancel=view.findViewById<Button>(R.id.cancel_score)
         cancel.setOnClickListener {
             dialog.dismiss()}
-
     }
 
     private fun openBottomSheet() {
@@ -126,37 +82,26 @@ class HomeFragment : Fragment() {
             getActivity()?.startActivity(intent)
             dialog.dismiss()
         }
-
         val cancel=view.findViewById<Button>(R.id.cancel)
         cancel.setOnClickListener {
             dialog.dismiss()
-
         }
-
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val sharedPreferences = requireContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "User")
+        val user = view.findViewById<TextView>(R.id.user)
+        user.text="Welcome, " + "$username"
 
+        val profile = view.findViewById(R.id.profile) as ImageView
+        profile.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent (getActivity(), ProfileActivity::class.java)
+                getActivity()?.startActivity(intent)
+                getActivity()?.finish()
+            }
+        })
         val myCard1 = view.findViewById(R.id.science) as CardView
         myCard1.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -166,7 +111,6 @@ class HomeFragment : Fragment() {
                 getActivity()?.startActivity(intent)
             }
         })
-
         val myCard2 = view.findViewById(R.id.technology) as CardView
         myCard2.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -203,7 +147,5 @@ class HomeFragment : Fragment() {
                 getActivity()?.startActivity(intent)
             }
         })
-
-
     }
 }

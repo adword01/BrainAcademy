@@ -2,14 +2,11 @@ package com.example.brainacademy
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.brainacademy.databinding.ActivityLoginBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -17,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase
 class Login : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
-    private lateinit var videoView: VideoView
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,48 +1,30 @@
 package com.example.brainacademy
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
-//import kotlinx.coroutines.NonCancellable.message
 
 class QuizActivity : AppCompatActivity() {
 
-
     private var askedQuestions = mutableListOf<String>()
     var flag: Boolean = true
-
     private lateinit var database: DatabaseReference
     private lateinit var selected_category: String
     private var score: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-
-
-        // val nextButton = findViewById<Button>(R.id.nextButton)
         val category = findViewById<TextView>(R.id.category)
-
 
         val intent = intent
         selected_category = intent.getStringExtra("category").toString().trim()
-//        val length = intent.getIntExtra("length",0)
-
-
         category.setText(selected_category)
-//        Toast.makeText(this,length,Toast.LENGTH_SHORT).show()
-
         displayQuestions()
-
     }
-
     private fun displayQuestions() {
         database = FirebaseDatabase.getInstance().reference.child("Questions")
         val questionTextView = findViewById<TextView>(R.id.questionTextView)
@@ -52,7 +34,6 @@ class QuizActivity : AppCompatActivity() {
         val option4TextView = findViewById<TextView>(R.id.option4)
         val subcategoryTextView = findViewById<TextView>(R.id.subcategory)
 
-        // Retrieve questions from all subcategories under "Science"
         database.child(selected_category).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val questionList = mutableListOf<questiondatabse>()
@@ -78,8 +59,6 @@ class QuizActivity : AppCompatActivity() {
                         questionList.add(question)
                     }
                 }
-
-                // Select a random question that hasn't been asked yet
                 val unansweredQuestions = questionList.filter { it.description !in askedQuestions }
 
                 if (unansweredQuestions.isNotEmpty()) {
@@ -90,13 +69,10 @@ class QuizActivity : AppCompatActivity() {
                     option3TextView.text = randomQuestion.option3
                     option4TextView.text = randomQuestion.option4
                     subcategoryTextView.text = randomQuestion.subcategory
-                    // Add the question description to the list of asked questions
                     askedQuestions.add(randomQuestion.description)
 
-                    // Define selectedOption at the class level
                     var selectedOption: String? = null
 
-// Add an onClickListener to each of the option TextViews
                     option1TextView.setOnClickListener {
                         selectedOption = option1TextView.text.toString()
                         option1TextView.setBackgroundResource(R.drawable.default_option_background)
@@ -127,38 +103,13 @@ class QuizActivity : AppCompatActivity() {
                             .show()
                     }
 
-// Add an onClickListener to the nextButton
                     val nextButton = findViewById<Button>(R.id.nextButton)
-//                    val index = 0
                     nextButton.setOnClickListener {
-                        // Check the selected answer and update the score
                         checkAnswer(selectedOption.toString(), randomQuestion.correctanswer)
                         val length = 10
-//                        Toast.makeText(this@QuizActivity,"$length",Toast.LENGTH_SHORT).show()
-//                        Toast.makeText(this@QuizActivity,"${askedQuestions.size}",Toast.LENGTH_SHORT).show()
-
-
-                        // Clear the selected option variable
-//                    selectedOption = null
-                        // Display the next question or show the final score
                         if (askedQuestions.size+2 < (length)) {
-//                            askedQuestions.size++
-//                            Toast.makeText(
-//                                this@QuizActivity,
-//                                "${questionList.size}",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
                             displayQuestions()
                         }
-//                    if (askedQuestions.size == questionList.size) {
-////                        showFinalScore()
-//                        finish()
-//                    }
-//                    else {
-//                        Toast.makeText(this@QuizActivity,"SCore",Toast.LENGTH_SHORT).show()
-////                        showFinalScore()
-//                    }
-
                     }
 
                 } else {
@@ -173,17 +124,7 @@ class QuizActivity : AppCompatActivity() {
 
 
                     }
-//                ++flag
-//             //   Toast.makeText(this@QuizActivity,"Toast",Toast.LENGTH_SHORT).show()
-//                if(flag == 1){
-
-//                    showFinalScore()
-//                }
-                    // All questions have been asked, exit the activity
-                    //   val intent = Intent(this@QuizActivity,ResultActivity::class.java)
-
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -194,28 +135,17 @@ class QuizActivity : AppCompatActivity() {
                 ).show()
             }
         })
-
-
     }
-
-
-    // Function to check if the selected option is correct and update the score
     private fun checkAnswer(selectedOption: String, correctAnswer: String?) {
-
         if (selectedOption.toString().trim() == correctAnswer.toString().trim()) {
             score++
         }
         displayQuestions()
-//        finish()
     }
-
     fun showFinalScore() {
-//        val message = "Your final score is $score "
         Toast.makeText(this@QuizActivity, "Your Total Score is : $score", Toast.LENGTH_LONG).show()
         val intent = Intent(this@QuizActivity,ResultActivity::class.java)
         intent.putExtra("Score",score)
         finish()
-
-        // You can also start a new activity to show the final score in a different screen
     }
 }

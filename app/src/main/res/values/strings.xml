@@ -27,4 +27,5 @@
         <item>Python</item>
         <item>CPP</item>
     </string-array>
+    <string name="title_activity_score">ScoreActivity</string>
 </resources>
