@@ -59,7 +59,12 @@ class QuizActivity : AppCompatActivity() {
                         questionList.add(question)
                     }
                 }
-                val unansweredQuestions = questionList.filter { it.description !in askedQuestions }
+
+                // Shuffle the list of questions and take the first 10 questions
+                val shuffledQuestionList = questionList.shuffled()
+                val selectedQuestions = shuffledQuestionList.take(10)
+
+                val unansweredQuestions = selectedQuestions.filter { it.description !in askedQuestions }
 
                 if (unansweredQuestions.isNotEmpty()) {
                     val randomQuestion = unansweredQuestions.random()
@@ -71,59 +76,89 @@ class QuizActivity : AppCompatActivity() {
                     subcategoryTextView.text = randomQuestion.subcategory
                     askedQuestions.add(randomQuestion.description)
 
+                    var selectedOptionTextView: TextView? = null
                     var selectedOption: String? = null
 
                     option1TextView.setOnClickListener {
-                        selectedOption = option1TextView.text.toString()
-                        option1TextView.setBackgroundResource(R.drawable.default_option_background)
-
-                        Toast.makeText(this@QuizActivity, "$selectedOption", Toast.LENGTH_SHORT)
-                            .show()
+                        if (selectedOptionTextView != option1TextView) {
+                            selectedOptionTextView?.setBackgroundResource(R.drawable.default_option_background)
+                            selectedOptionTextView = option1TextView
+                            selectedOption = option1TextView.text.toString()
+                            option1TextView.setBackgroundResource(R.drawable.selected_option_border)
+                        } else {
+                            selectedOptionTextView = null
+                            selectedOption = null
+                            option1TextView.setBackgroundResource(R.drawable.default_option_background)
+                        }
                     }
+
                     option2TextView.setOnClickListener {
-                        selectedOption = option2TextView.text.toString()
-                        option2TextView.setBackgroundResource(R.drawable.default_option_background)
-
-                        Toast.makeText(this@QuizActivity, "$selectedOption", Toast.LENGTH_SHORT)
-                            .show()
+                        if (selectedOptionTextView != option2TextView) {
+                            selectedOptionTextView?.setBackgroundResource(R.drawable.default_option_background)
+                            selectedOptionTextView = option2TextView
+                            selectedOption = option2TextView.text.toString()
+                            option2TextView.setBackgroundResource(R.drawable.selected_option_border)
+                        } else {
+                            selectedOptionTextView = null
+                            selectedOption = null
+                            option2TextView.setBackgroundResource(R.drawable.default_option_background)
+                        }
                     }
+
                     option3TextView.setOnClickListener {
-                        selectedOption = option3TextView.text.toString()
-                        option3TextView.setBackgroundResource(R.drawable.default_option_background)
-
-                        Toast.makeText(this@QuizActivity, "$selectedOption", Toast.LENGTH_SHORT)
-                            .show()
+                        if (selectedOptionTextView != option3TextView) {
+                            selectedOptionTextView?.setBackgroundResource(R.drawable.default_option_background)
+                            selectedOptionTextView = option3TextView
+                            selectedOption = option3TextView.text.toString()
+                            option3TextView.setBackgroundResource(R.drawable.selected_option_border)
+                        } else {
+                            selectedOptionTextView = null
+                            selectedOption = null
+                            option3TextView.setBackgroundResource(R.drawable.default_option_background)
+                        }
                     }
+
                     option4TextView.setOnClickListener {
-                        selectedOption = option4TextView.text.toString()
-                        option4TextView.setBackgroundResource(R.drawable.default_option_background)
-
-
-                        Toast.makeText(this@QuizActivity, "$selectedOption", Toast.LENGTH_SHORT)
-                            .show()
+                        if (selectedOptionTextView != option4TextView) {
+                            selectedOptionTextView?.setBackgroundResource(R.drawable.default_option_background)
+                            selectedOptionTextView = option4TextView
+                            selectedOption = option4TextView.text.toString()
+                            option4TextView.setBackgroundResource(R.drawable.selected_option_border)
+                        } else {
+                            selectedOptionTextView = null
+                            selectedOption = null
+                            option4TextView.setBackgroundResource(R.drawable.default_option_background)
+                        }
                     }
 
                     val nextButton = findViewById<Button>(R.id.nextButton)
                     nextButton.setOnClickListener {
-                        checkAnswer(selectedOption.toString(), randomQuestion.correctanswer)
-                        val length = 10
-                        if (askedQuestions.size+2 < (length)) {
-                            displayQuestions()
+                        if (selectedOption != null) {
+                            checkAnswer(selectedOption!!, randomQuestion.correctanswer)
+
+                            selectedOptionTextView?.setBackgroundResource(R.drawable.default_option_background)
+                            selectedOptionTextView = null
+                            selectedOption = null
+                            if (askedQuestions.size == 10) {
+                                showFinalScore()
+                                val intent = Intent(this@QuizActivity,ResultActivity::class.java)
+                                intent.putExtra("score", score)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                displayQuestions()
+                            }
+                        } else {
+                            Toast.makeText(this@QuizActivity, "Please select an answer.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                 } else {
-                    if (flag) {
-                        flag = false
-                        showFinalScore()
-
-                        val intent = Intent(this@QuizActivity,ResultActivity::class.java)
-                        intent.putExtra("score", score)
-                        startActivity(intent)
-                        finish()
-
-
-                    }
+                    showFinalScore()
+                    val intent = Intent(this@QuizActivity,ResultActivity::class.java)
+                    intent.putExtra("score", score)
+                    startActivity(intent)
+                    finish()
                 }
             }
 
